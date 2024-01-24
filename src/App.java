@@ -3,25 +3,23 @@ import java.util.Scanner;
 
 public class App {
     static Scanner input = new Scanner(System.in);
-    static int scene; 
+    static int scene = 1; 
+    static int livS = 10;
+    static int livF = 10;
+    static boolean igång = true;
+    static boolean fight = false;
+
     public static void main(String[] args) throws Exception {
-        
-        variabler();
+        while(igång){
         if(scene == 1){
             startmeny();
-        }
-        if(scene == 2){
+        } else if(scene == 2){
             instmeny();
+        } else if(scene == 3){
+            fight = true;
         }
+        break;
     }
-
-    static void variabler(){
-        int livS = 10;
-        int livF = 10;
-        int skada1;
-        int skada2;
-        scene = 1;
-        int difficulty;
     }
     static void startmeny(){
         System.out.println(" - - - - - Fighter - - - - - ");
@@ -42,12 +40,26 @@ public class App {
     static void instmeny(){
         System.out.println(" - - - - - Fighter - - - - - ");
         System.out.println(" - - - - - - - - - - - - - - ");
-        System.out.println(" - - - - 1. Normal - - - - - ");
-        System.out.println(" - - - - - 2. Svår - - - - - ");
-        System.out.println(" - - - - 3. Avsluta - - - - -");
+        System.out.println(" - - - - - 1. lätt - - - - - ");
+        System.out.println(" - - - - 2. Normal - - - - - ");
+        System.out.println(" - - - - - 3. Svår - - - - - ");
+        System.out.println(" - - - - 4. Avsluta - - - - -");
         System.out.println(" - - - - - - - - - - - - - - ");
-    }
+        String userInput = input.nextLine();
+        if(userInput.equals("1")){
+            livF = 5;
+            scene = 1;
+        } else if(userInput.equals("2")){
+            livF = 10;
+            scene = 1;
+        } else if(userInput.equals("3")){
+            livF = 15;
+            scene = 1;
+        } else if(userInput.equals("4")){
+            scene = 1;
+        }
     
+    }
 }
 
 
