@@ -18,10 +18,12 @@ public class App {
         } else if(scene == 3){
             fight = true;
         }
-        break;
     }
     }
     static void startmeny(){
+        for(int i = 0; i < 20;i++){
+            System.out.println(" ");
+        }
         System.out.println(" - - - - - Fighter - - - - - ");
         System.out.println(" - - - - - - - - - - - - - - ");
         System.out.println(" - - - - 1. Starta - - - - - ");
@@ -34,16 +36,19 @@ public class App {
         } else if(userInput.equals("2")){
             scene = 2;
         } else if(userInput.equals("3")){
-            scene = 1;
+            igång = false;
         }
     }
     static void instmeny(){
+        for(int i = 0; i < 20;i++){
+            System.out.println(" ");
+        }
         System.out.println(" - - - - - Fighter - - - - - ");
         System.out.println(" - - - - - - - - - - - - - - ");
         System.out.println(" - - - - - 1. lätt - - - - - ");
         System.out.println(" - - - - 2. Normal - - - - - ");
         System.out.println(" - - - - - 3. Svår - - - - - ");
-        System.out.println(" - - - - 4. Avsluta - - - - -");
+        System.out.println(" - - - -  4. back - - - - - -");
         System.out.println(" - - - - - - - - - - - - - - ");
         String userInput = input.nextLine();
         if(userInput.equals("1")){
@@ -58,7 +63,6 @@ public class App {
         } else if(userInput.equals("4")){
             scene = 1;
         }
-    
     }
 }
 
