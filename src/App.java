@@ -2,12 +2,16 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class App {
-
-    static int scene;
+    static Scanner input = new Scanner(System.in);
+    static int scene; 
     public static void main(String[] args) throws Exception {
+        
         variabler();
         if(scene == 1){
             startmeny();
+        }
+        if(scene == 2){
+            instmeny();
         }
     }
 
@@ -26,6 +30,14 @@ public class App {
         System.out.println(" - - - 2. Iställningar - - - ");
         System.out.println(" - - - - 3. Avsluta - - - - -");
         System.out.println(" - - - - - - - - - - - - - - ");
+        String userInput = input.nextLine();
+        if(userInput.equals("1")){
+            scene = 3;
+        } else if(userInput.equals("2")){
+            scene = 2;
+        } else if(userInput.equals("3")){
+            scene = 1;
+        }
     }
     static void instmeny(){
         System.out.println(" - - - - - Fighter - - - - - ");
@@ -35,6 +47,7 @@ public class App {
         System.out.println(" - - - - 3. Avsluta - - - - -");
         System.out.println(" - - - - - - - - - - - - - - ");
     }
+    
 }
 
 
