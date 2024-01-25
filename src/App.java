@@ -3,11 +3,12 @@ import java.util.Scanner;
 
 public class App {
     static Scanner input = new Scanner(System.in);
+    static Random Random = new Random();
     static int scene = 1; 
     static int livS = 10;
     static int livF = 10;
     static boolean igång = true;
-    static boolean fight = false;
+    static boolean tur = true;
 
     public static void main(String[] args) throws Exception {
         while(igång){
@@ -16,8 +17,8 @@ public class App {
         } else if(scene == 2){
             instmeny();
         } else if(scene == 3){
-            fight = true;
-        }
+            spel();
+        }  
     }
     }
     static void startmeny(){
@@ -62,6 +63,31 @@ public class App {
             scene = 1;
         } else if(userInput.equals("4")){
             scene = 1;
+        }
+    }
+    static void spel(){
+        System.out.println("Tryck enter för att slå din motsåndare!");
+        if(input.hasNextLine()){
+            while(livF > 0 && livS > 0){
+            int strengthS = Random.nextInt(5) + 1;
+            int strengthF = Random.nextInt(5) + 1;
+            if(strengthS < strengthF && tur){
+                System.out.println("Du slog inte hårt nog");
+            } else if(strengthS < strengthF && tur){
+                int damage = strengthS - strengthF;
+                System.out.println("Du slog hårt nog och gjorde "+damage+" skada!");
+                livF -= damage;
+                System.out.println("Du har nu "+livS+" HP och din fiende har "+livF+" HP");
+            }
+            strengthF = Random.nextInt(5) + 1;
+            strengthS = Random.nextInt(5) + 1;
+            }
+                if(livF>livS){
+                    //förlust
+                }
+                if(livS>livF){
+                    //Vinst
+                }
         }
     }
 }
