@@ -69,20 +69,20 @@ public class App {
         while(livF > 0 && livS > 0){
             System.out.println("Tryck enter för att slå din motsåndare!");
             input.nextLine();
-                int strengthS = Random.nextInt(5) + 1;
-                int strengthF = Random.nextInt(5) + 1;
-                if(strengthS <= strengthF && tur){
-                    System.out.println("Du slog inte hårt nog");
-                    tur = false;
-                } else if(strengthS > strengthF && tur){
-                    int damage1 = strengthS - strengthF;
-                    System.out.println("Du slog hårt nog och gjorde "+damage1+" skada!");
-                    livF -= damage1;
-                    System.out.println("Du har nu "+livS+" HP och din fiende har "+livF+" HP");
-                    tur = false;
-                }
-                int strengthF2 = Random.nextInt(5) + 1;
-                int strengthS2 = Random.nextInt(5) + 1;
+            int strengthS = Random.nextInt(5) + 1;
+            int strengthF = Random.nextInt(5) + 1;
+            if(strengthS <= strengthF && tur){
+                System.out.println("Du slog inte hårt nog");
+                tur = false;
+            } else if(strengthS > strengthF && tur){
+                int damage1 = strengthS - strengthF;
+                System.out.println("Du slog hårt nog och gjorde "+damage1+" skada!");
+                livF -= damage1;
+                System.out.println("Du har nu "+livS+" HP och din fiende har "+livF+" HP");
+                tur = false;
+            }
+            int strengthF2 = Random.nextInt(5) + 1;
+            int strengthS2 = Random.nextInt(5) + 1;
             if(strengthS2 >= strengthF2 && tur == false){
                 System.out.println("fienden slog inte hårt nog");
                 tur = true;
@@ -94,12 +94,15 @@ public class App {
                 tur = true;
             }
         }
-                if(livF>livS){
-                    //förlust
-                }
-                if(livS>livF){
-                    //Vinst
-                }
+        if(livF>livS){
+            System.out.println("Fienden har vunnit");
+            livF = 10;
+            livS = 10;
+        } else if(livS>livF){
+            System.out.println("Spelaren har vunnit");
+            livS = 10;
+            livF = 10;
+        }
         
     }
 }
