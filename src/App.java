@@ -66,29 +66,41 @@ public class App {
         }
     }
     static void spel(){
-        System.out.println("Tryck enter för att slå din motsåndare!");
-        if(input.hasNextLine()){
-            while(livF > 0 && livS > 0){
-            int strengthS = Random.nextInt(5) + 1;
-            int strengthF = Random.nextInt(5) + 1;
-            if(strengthS < strengthF && tur){
-                System.out.println("Du slog inte hårt nog");
-            } else if(strengthS < strengthF && tur){
-                int damage = strengthS - strengthF;
-                System.out.println("Du slog hårt nog och gjorde "+damage+" skada!");
-                livF -= damage;
+        while(livF > 0 && livS > 0){
+            System.out.println("Tryck enter för att slå din motsåndare!");
+            input.nextLine();
+                int strengthS = Random.nextInt(5) + 1;
+                int strengthF = Random.nextInt(5) + 1;
+                if(strengthS <= strengthF && tur){
+                    System.out.println("Du slog inte hårt nog");
+                    tur = false;
+                } else if(strengthS > strengthF && tur){
+                    int damage1 = strengthS - strengthF;
+                    System.out.println("Du slog hårt nog och gjorde "+damage1+" skada!");
+                    livF -= damage1;
+                    System.out.println("Du har nu "+livS+" HP och din fiende har "+livF+" HP");
+                    tur = false;
+                }
+                int strengthF2 = Random.nextInt(5) + 1;
+                int strengthS2 = Random.nextInt(5) + 1;
+            if(strengthS2 >= strengthF2 && tur == false){
+                System.out.println("fienden slog inte hårt nog");
+                tur = true;
+            } else if(strengthS2 < strengthF2 && tur == false){
+                int damage2 = strengthF2 - strengthS2;
+                System.out.println("fienden slog hårt nog och gjorde "+damage2+" skada!");
+                livS -= damage2;
                 System.out.println("Du har nu "+livS+" HP och din fiende har "+livF+" HP");
+                tur = true;
             }
-            strengthF = Random.nextInt(5) + 1;
-            strengthS = Random.nextInt(5) + 1;
-            }
+        }
                 if(livF>livS){
                     //förlust
                 }
                 if(livS>livF){
                     //Vinst
                 }
-        }
+        
     }
 }
 
