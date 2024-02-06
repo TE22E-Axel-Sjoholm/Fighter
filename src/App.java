@@ -9,8 +9,12 @@ public class App {
     static int livF = 10;
     static boolean igång = true;
     static boolean tur = true;
+    static int Score[];
+    static int strengthF;
+    static int strengthS;
 
     public static void main(String[] args) throws Exception {
+        Score = new int[100];
         while(igång){
         if(scene == 1){
             startmeny();
@@ -18,7 +22,7 @@ public class App {
             instmeny();
         } else if(scene == 3){
             spel();
-        }  
+        } 
     }
     }
     static void startmeny(){
@@ -69,8 +73,8 @@ public class App {
         while(livF > 0 && livS > 0){
             System.out.println("Tryck enter för att slå din motsåndare!");
             input.nextLine();
-            int strengthS = Random.nextInt(5) + 1;
-            int strengthF = Random.nextInt(5) + 1;
+            strengthS = Random.nextInt(5) + 1;
+            strengthF = Random.nextInt(5) + 1;
             if(strengthS <= strengthF && tur){
                 System.out.println("Du slog inte hårt nog");
                 tur = false;
@@ -94,17 +98,25 @@ public class App {
                 tur = true;
             }
         }
+
         if(livF>livS){
             System.out.println("Fienden har vunnit");
             livF = 10;
             livS = 10;
+            scene = 1;
         } else if(livS>livF){
             System.out.println("Spelaren har vunnit");
             livS = 10;
             livF = 10;
+            scene = 1;
         }
         
     }
+    static void score(){
+
+    }
+
+
 }
 
 
