@@ -12,7 +12,9 @@ public class App {
     static int Score[];
     static int strengthF;
     static int strengthS;
-
+    static int damage1;
+    static int damage2;
+    static int highScore = 0;
     public static void main(String[] args) throws Exception {
         Score = new int[100];
         while(igång){
@@ -29,8 +31,9 @@ public class App {
         for(int i = 0; i < 20;i++){
             System.out.println(" ");
         }
+        score();
         System.out.println(" - - - - - Fighter - - - - - ");
-        System.out.println(" - - - - - - - - - - - - - - ");
+        System.out.println(" - - - - - - "+highScore+" - - - - - - - ");
         System.out.println(" - - - - 1. Starta - - - - - ");
         System.out.println(" - - - 2. Iställningar - - - ");
         System.out.println(" - - - - 3. Avsluta - - - - -");
@@ -70,6 +73,7 @@ public class App {
         }
     }
     static void spel(){
+        int e = 0;
         while(livF > 0 && livS > 0){
             System.out.println("Tryck enter för att slå din motsåndare!");
             input.nextLine();
@@ -79,7 +83,8 @@ public class App {
                 System.out.println("Du slog inte hårt nog");
                 tur = false;
             } else if(strengthS > strengthF && tur){
-                int damage1 = strengthS - strengthF;
+                damage1 = strengthS - strengthF;
+                Score[e] =+ damage1;
                 System.out.println("Du slog hårt nog och gjorde "+damage1+" skada!");
                 livF -= damage1;
                 System.out.println("Du har nu "+livS+" HP och din fiende har "+livF+" HP");
@@ -91,14 +96,15 @@ public class App {
                 System.out.println("fienden slog inte hårt nog");
                 tur = true;
             } else if(strengthS2 < strengthF2 && tur == false){
-                int damage2 = strengthF2 - strengthS2;
+                damage2 = strengthF2 - strengthS2;
                 System.out.println("fienden slog hårt nog och gjorde "+damage2+" skada!");
                 livS -= damage2;
                 System.out.println("Du har nu "+livS+" HP och din fiende har "+livF+" HP");
                 tur = true;
             }
         }
-
+        e++;
+        score();
         if(livF>livS){
             System.out.println("Fienden har vunnit");
             livF = 10;
@@ -112,11 +118,13 @@ public class App {
         }
         
     }
-    static void score(){
-
+        static void score() {
+            int largest = Score[0];
+            for (int i = 1; i < 10; i++) {
+                if (Score[i] > largest) {
+                    largest = Score[i];
+                }
+            }
+            highScore = largest;
+        }
     }
-
-
-}
-
-
