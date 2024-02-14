@@ -15,8 +15,10 @@ public class App {
     static int damage1;
     static int damage2;
     static int highScore = 0;
+    static int e;
     public static void main(String[] args) throws Exception {
         Score = new int[100];
+        e = 0;
         while(igång){
         if(scene == 1){
             startmeny();
@@ -24,14 +26,15 @@ public class App {
             instmeny();
         } else if(scene == 3){
             spel();
+            e++;
         } 
     }
     }
     static void startmeny(){
+        score();
         for(int i = 0; i < 20;i++){
             System.out.println(" ");
         }
-        score();
         System.out.println(" - - - - - Fighter - - - - - ");
         System.out.println(" - - - - - - "+highScore+" - - - - - - - ");
         System.out.println(" - - - - 1. Starta - - - - - ");
@@ -73,7 +76,6 @@ public class App {
         }
     }
     static void spel(){
-        int e = 0;
         while(livF > 0 && livS > 0){
             System.out.println("Tryck enter för att slå din motsåndare!");
             input.nextLine();
@@ -84,7 +86,6 @@ public class App {
                 tur = false;
             } else if(strengthS > strengthF && tur){
                 damage1 = strengthS - strengthF;
-                Score[e] =+ damage1;
                 System.out.println("Du slog hårt nog och gjorde "+damage1+" skada!");
                 livF -= damage1;
                 System.out.println("Du har nu "+livS+" HP och din fiende har "+livF+" HP");
@@ -103,7 +104,6 @@ public class App {
                 tur = true;
             }
         }
-        e++;
         score();
         if(livF>livS){
             System.out.println("Fienden har vunnit");
@@ -112,6 +112,7 @@ public class App {
             scene = 1;
         } else if(livS>livF){
             System.out.println("Spelaren har vunnit");
+            Score[e] = livS;
             livS = 10;
             livF = 10;
             scene = 1;
