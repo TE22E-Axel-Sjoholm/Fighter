@@ -3,22 +3,18 @@ import java.util.Scanner;
 
 public class App {
     static Scanner input = new Scanner(System.in);
-    static Random Random = new Random();
+    static Random slump = new Random();
     static int scene = 1; 
     static int livS = 10;
     static int livF = 10;
     static boolean igång = true;
     static boolean tur = true;
-    static int Score[];
-    static int strengthF;
-    static int strengthS;
-    static int damage1;
-    static int damage2;
-    static int highScore = 0;
-    static int e;
+    static int poäng[];
+    static int poängRekord = 0;
+    static int mängdSpel;
     public static void main(String[] args) throws Exception {
-        Score = new int[100];
-        e = 0;
+        poäng = new int[100];
+        mängdSpel = 0;
         while(igång){
         if(scene == 1){
             startmeny();
@@ -26,7 +22,7 @@ public class App {
             instmeny();
         } else if(scene == 3){
             spel();
-            e++;
+            mängdSpel++;
         } 
     }
     }
@@ -36,7 +32,7 @@ public class App {
             System.out.println(" ");
         }
         System.out.println(" - - - - - Fighter - - - - - ");
-        System.out.println(" - - - - - - "+highScore+" - - - - - - - ");
+        System.out.println(" - - - - - - "+poängRekord+" - - - - - - - ");
         System.out.println(" - - - - 1. Starta - - - - - ");
         System.out.println(" - - - 2. Iställningar - - - ");
         System.out.println(" - - - - 3. Avsluta - - - - -");
@@ -61,17 +57,17 @@ public class App {
         System.out.println(" - - - - - 3. Svår - - - - - ");
         System.out.println(" - - - -  4. back - - - - - -");
         System.out.println(" - - - - - - - - - - - - - - ");
-        String userInput = input.nextLine();
-        if(userInput.equals("1")){
+        String användarInput = input.nextLine();
+        if(användarInput.equals("1")){
             livF = 5;
             scene = 1;
-        } else if(userInput.equals("2")){
+        } else if(användarInput.equals("2")){
             livF = 10;
             scene = 1;
-        } else if(userInput.equals("3")){
+        } else if(användarInput.equals("3")){
             livF = 15;
             scene = 1;
-        } else if(userInput.equals("4")){
+        } else if(användarInput.equals("4")){
             scene = 1;
         }
     }
@@ -79,27 +75,27 @@ public class App {
         while(livF > 0 && livS > 0){
             System.out.println("Tryck enter för att slå din motsåndare!");
             input.nextLine();
-            strengthS = Random.nextInt(5) + 1;
-            strengthF = Random.nextInt(5) + 1;
-            if(strengthS <= strengthF && tur){
+            int styrkaS = slump.nextInt(5) + 1;
+            int styrkaF = slump.nextInt(5) + 1;
+            if(styrkaS <= styrkaF && tur){
                 System.out.println("Du slog inte hårt nog");
                 tur = false;
-            } else if(strengthS > strengthF && tur){
-                damage1 = strengthS - strengthF;
-                System.out.println("Du slog hårt nog och gjorde "+damage1+" skada!");
-                livF -= damage1;
+            } else if(styrkaS > styrkaF && tur){
+                int skadaS = styrkaS - styrkaF;
+                System.out.println("Du slog hårt nog och gjorde "+skadaS+" skada!");
+                livF -= skadaS;
                 System.out.println("Du har nu "+livS+" HP och din fiende har "+livF+" HP");
                 tur = false;
             }
-            int strengthF2 = Random.nextInt(5) + 1;
-            int strengthS2 = Random.nextInt(5) + 1;
+            int strengthF2 = slump.nextInt(5) + 1;
+            int strengthS2 = slump.nextInt(5) + 1;
             if(strengthS2 >= strengthF2 && tur == false){
                 System.out.println("fienden slog inte hårt nog");
                 tur = true;
             } else if(strengthS2 < strengthF2 && tur == false){
-                damage2 = strengthF2 - strengthS2;
-                System.out.println("fienden slog hårt nog och gjorde "+damage2+" skada!");
-                livS -= damage2;
+                int skadaF = strengthF2 - strengthS2;
+                System.out.println("fienden slog hårt nog och gjorde "+skadaF+" skada!");
+                livS -= skadaF;
                 System.out.println("Du har nu "+livS+" HP och din fiende har "+livF+" HP");
                 tur = true;
             }
@@ -112,20 +108,19 @@ public class App {
             scene = 1;
         } else if(livS>livF){
             System.out.println("Spelaren har vunnit");
-            Score[e] = livS;
+            poäng[mängdSpel] = livS;
             livS = 10;
             livF = 10;
             scene = 1;
-        }
-        
+        }   
     }
         static void score() {
-            int largest = Score[0];
+            int största = poäng[0];
             for (int i = 1; i < 10; i++) {
-                if (Score[i] > largest) {
-                    largest = Score[i];
+                if (poäng[i] > största) {
+                    största = poäng[i];
                 }
             }
-            highScore = largest;
+            poängRekord = största;
         }
     }
